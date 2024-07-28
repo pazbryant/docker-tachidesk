@@ -2,7 +2,7 @@ name: Build container of the preview release
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths-ignore:
       - '**/README.md'
   pull_request:
