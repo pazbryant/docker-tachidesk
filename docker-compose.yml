@@ -39,3 +39,6 @@ services:
     profiles:
       - mihon
       - tachiyomisy
+
+# Create the bid mount folder manually because if not you will get permissions
+# errors
