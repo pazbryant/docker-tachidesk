@@ -1,12 +1,9 @@
----
-version: "3.7"
 services:
   mihon:
     image: ghcr.io/suwayomi/tachidesk:latest
     container_name: mihon
     environment:
-      - TZ=Etc/UTC # Use TZ database name from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-      # Comment these out if you do not use the flaresolverr container at the bottom of this file
+      - TZ=Etc/UTC
       - FLARESOLVERR_ENABLED=true
       - FLARESOLVERR_URL=http://flaresolverr:8191
       - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
@@ -14,10 +11,31 @@ services:
       - /home/bryant/.config/mihon/:/home/suwayomi/.local/share/Tachidesk
     ports:
       - "4567:4567"
+    profiles:
+      - mihon
+
+  tachiyomisy:
+    image: ghcr.io/suwayomi/tachidesk:latest
+    container_name: tachiyomisy
+    environment:
+      - TZ=Etc/UTC
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+      - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
+    volumes:
+      - /home/bryant/.config/tachiyomisy/:/home/suwayomi/.local/share/Tachidesk
+    ports:
+      - "4567:4567"
+    profiles:
+      - tachiyomisy
+
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
     environment:
-      - TZ=Etc/UTC # Use TZ database name from https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      - TZ=Etc/UTC
     ports:
       - "8191:8191"
+    profiles:
+      - mihon
+      - tachiyomisy
