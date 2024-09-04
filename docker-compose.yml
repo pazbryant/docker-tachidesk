@@ -1,33 +1,63 @@
 services:
-  mihon:
+  mihon_personal:
     image: ghcr.io/suwayomi/tachidesk:latest
-    container_name: mihon
+    container_name: mihon_personal
     environment:
       - TZ=Etc/UTC
       - FLARESOLVERR_ENABLED=true
       - FLARESOLVERR_URL=http://flaresolverr:8191
       - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
     volumes:
-      - /home/bryant/.config/mihon/:/home/suwayomi/.local/share/Tachidesk
+      - /home/bryant/.config/mihon_personal/:/home/suwayomi/.local/share/Tachidesk
     ports:
       - "4567:4567"
     profiles:
-      - mihon
+      - mihon_personal
 
-  tachiyomisy:
+  mihon_private:
     image: ghcr.io/suwayomi/tachidesk:latest
-    container_name: tachiyomisy
+    container_name: mihon_private
     environment:
       - TZ=Etc/UTC
       - FLARESOLVERR_ENABLED=true
       - FLARESOLVERR_URL=http://flaresolverr:8191
       - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
     volumes:
-      - /home/bryant/.config/tachiyomisy/:/home/suwayomi/.local/share/Tachidesk
+      - /home/bryant/.config/mihon_private/:/home/suwayomi/.local/share/Tachidesk
     ports:
       - "4567:4567"
     profiles:
-      - tachiyomisy
+      - mihon_private
+
+  tachiyomisy_personal:
+    image: ghcr.io/suwayomi/tachidesk:latest
+    container_name: tachiyomisy_personal
+    environment:
+      - TZ=Etc/UTC
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+      - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
+    volumes:
+      - /home/bryant/.config/tachiyomisy_personal/:/home/suwayomi/.local/share/Tachidesk
+    ports:
+      - "4567:4567"
+    profiles:
+      - tachiyomisy_personal
+
+  tachiyomisy_private:
+    image: ghcr.io/suwayomi/tachidesk:latest
+    container_name: tachiyomisy_private
+    environment:
+      - TZ=Etc/UTC
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+      - EXTENSION_REPOS=["https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"]
+    volumes:
+      - /home/bryant/.config/tachiyomisy_private/:/home/suwayomi/.local/share/Tachidesk
+    ports:
+      - "4567:4567"
+    profiles:
+      - tachiyomisy_private
 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -37,8 +67,10 @@ services:
     ports:
       - "8191:8191"
     profiles:
-      - mihon
-      - tachiyomisy
+      - mihon_private
+      - mihon_personal
+      - tachiyomisy_private
+      - tachiyomisy_personal
 
 # Create the bid mount folder manually because if not you will get permissions
 # errors
