@@ -10,7 +10,7 @@ services:
     volumes:
       - /home/bryant/.config/mihon_personal/:/home/suwayomi/.local/share/Tachidesk
     ports:
-      - "4567:4567"
+      - "4568:4567"
     profiles:
       - mihon_personal
 
@@ -25,7 +25,7 @@ services:
     volumes:
       - /home/bryant/.config/mihon_private/:/home/suwayomi/.local/share/Tachidesk
     ports:
-      - "4567:4567"
+      - "4568:4567"
     profiles:
       - mihon_private
 
@@ -71,6 +71,5 @@ services:
       - mihon_personal
       - tachiyomisy_private
       - tachiyomisy_personal
-
 # Create the bid mount folder manually because if not you will get permissions
 # errors
